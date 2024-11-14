@@ -7,9 +7,8 @@ packer {
   }
 }
 
-variable "managed_image_name" {
-  type    = string
-  default = "packer-${var.image_os}-${var.image_version}"
+locals {
+  managed_image_name = var.managed_image_name != "" ? var.managed_image_name : "packer-${var.image_os}-${var.image_version}"
 }
 
 variable "agent_tools_directory" {
