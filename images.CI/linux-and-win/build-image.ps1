@@ -55,7 +55,7 @@ packer build    -var "client_id=$ClientId" `
                 -var "virtual_network_name=$VirtualNetworkName" `
                 -var "virtual_network_resource_group_name=$VirtualNetworkRG" `
                 -var "virtual_network_subnet_name=$VirtualNetworkSubnet" `
-                -var "allowed_inbound_ip_addresses=[]" `
+                -var "allowed_inbound_ip_addresses=$($AllowedInboundIpAddresses)" `
                 -color=false `
                 $TemplatePath `
         | Where-Object {
