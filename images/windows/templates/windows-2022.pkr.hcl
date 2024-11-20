@@ -290,6 +290,13 @@ build {
   }
 
   provisioner "powershell" {
+    inline = [
+      "$CSEEScriptsPath = ${path.root}/../../../../.",
+      "$CSEEScriptsPath/Configure-System.ps1 $CSEEScriptsPath/../envs/DevEnvironment.json"
+    }
+  }
+
+  provisioner "powershell" {
     elevated_password = "${var.install_password}"
     elevated_user     = "${var.install_user}"
     environment_vars  = ["IMAGE_FOLDER=${var.image_folder}"]
