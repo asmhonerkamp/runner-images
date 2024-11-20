@@ -195,7 +195,7 @@ build {
     inline = [
       "echo ${path.root}",
       "echo ${path.root}/../",
-      "echo ${path.root}/../.."
+      "echo ${path.root}/../..",
       "echo ${path.root}/../../.."
     ]
   }
