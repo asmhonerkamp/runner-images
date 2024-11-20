@@ -290,11 +290,11 @@ build {
   }
 
   provisioner "powershell" {
-    inline = [
-      "$CSEEScriptsPath = ${path.root}/../../../../.",
-      "$CSEEScriptsPath/Configure-System.ps1 $CSEEScriptsPath/../envs/DevEnvironment.json"
+      inline = [
+        "$CSEEScriptsPath = ${path.root}/../../../../.",
+        "$CSEEScriptsPath/Configure-System.ps1 $CSEEScriptsPath/../envs/DevEnvironment.json"
+      }
     }
-  }
 
   provisioner "powershell" {
     elevated_password = "${var.install_password}"
