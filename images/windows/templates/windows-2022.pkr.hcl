@@ -192,6 +192,15 @@ build {
   sources = ["source.azure-arm.image"]
 
   provisioner "powershell" {
+    inline = [
+      "echo ${path.root}",
+      "echo ${path.root}/../",
+      "echo ${path.root}/../.."
+      "echo ${path.root}/../../.."
+    ]
+  }
+
+  provisioner "powershell" {
     inline = ["New-Item -Path ${var.image_folder} -ItemType Directory -Force"]
   }
 
