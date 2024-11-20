@@ -192,6 +192,10 @@ build {
   sources = ["source.azure-arm.image"]
 
   provisioner "powershell" {
+    inline = ["Dir -Recurse ${path.root}/../../../../ | Get-Childitem"]
+  }
+
+  provisioner "powershell" {
     elevated_password = "${var.install_password}"
     elevated_user     = "${var.install_user}"
     execution_policy = "unrestricted"
