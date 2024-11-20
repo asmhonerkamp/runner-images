@@ -196,15 +196,6 @@ build {
   }
 
   provisioner "powershell" {
-    elevated_password = "${var.install_password}"
-    elevated_user     = "${var.install_user}"
-    execution_policy = "unrestricted"
-    scripts           = [
-      "${path.root}/../../../../CSEE/Configure-System.ps1 ${path.root}/../../../../envs/DevEnvironment.json"
-    ]
-  }
-
-  provisioner "powershell" {
     inline = ["New-Item -Path ${var.image_folder} -ItemType Directory -Force"]
   }
 
