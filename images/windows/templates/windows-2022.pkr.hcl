@@ -192,12 +192,10 @@ build {
   sources = ["source.azure-arm.image"]
 
   provisioner "powershell" {
-    inline = [
-      "echo ${path.root}",
-      "echo ${path.root}/../",
-      "echo ${path.root}/../..",
-      "echo ${path.root}/../../.."
-    ]
+      inline = [
+        "$CSEEScriptsPath = ${path.root}/../../../../CSEE",
+        "$CSEEScriptsPath/Configure-System.ps1 $CSEEScriptsPath/../envs/DevEnvironment.json"
+      ]
   }
 
   provisioner "powershell" {
@@ -288,13 +286,6 @@ build {
   provisioner "windows-restart" {
     restart_timeout = "30m"
   }
-
-  provisioner "powershell" {
-      inline = [
-        "$CSEEScriptsPath = ${path.root}/../../../../.",
-        "$CSEEScriptsPath/Configure-System.ps1 $CSEEScriptsPath/../envs/DevEnvironment.json"
-      ]
-    }
 
   provisioner "powershell" {
     elevated_password = "${var.install_password}"
