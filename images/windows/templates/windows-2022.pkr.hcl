@@ -192,10 +192,12 @@ build {
   sources = ["source.azure-arm.image"]
 
   provisioner "powershell" {
-      inline = [
-        "$CSEEScriptsPath = ${path.root}/../../../../CSEE",
-        "& $CSEEScriptsPath/Configure-System.ps1 $CSEEScriptsPath/../envs/DevEnvironment.json"
-      ]
+    elevated_password = "${var.install_password}"
+    elevated_user     = "${var.install_user}"
+    execution_policy = "unrestricted"
+    scripts           = [
+      "${path.root}/../../../../CSEE/Configure-System.ps1 ${path.root}/../../../../envs/DevEnvironment.json"
+    ]
   }
 
   provisioner "powershell" {
