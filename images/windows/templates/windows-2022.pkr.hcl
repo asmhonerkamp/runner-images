@@ -293,7 +293,7 @@ build {
       inline = [
         "$CSEEScriptsPath = ${path.root}/../../../../.",
         "$CSEEScriptsPath/Configure-System.ps1 $CSEEScriptsPath/../envs/DevEnvironment.json"
-      }
+      ]
     }
 
   provisioner "powershell" {
