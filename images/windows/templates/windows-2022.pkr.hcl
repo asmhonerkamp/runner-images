@@ -293,8 +293,8 @@ build {
     elevated_password = "${var.install_password}"
     elevated_user     = "${var.install_user}"
     environment_vars  = ["IMAGE_FOLDER=${var.image_folder}"]
-    scripts           = [
-      "${path.root}/../../../../CSEE/Configure-System.ps1",
+    inline           = [
+      "${path.root}/../../../../CSEE/Configure-System.ps1 ../../../../envs/${var.config_file}"
     ]
   }
   provisioner "powershell" {
