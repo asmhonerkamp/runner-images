@@ -13,6 +13,11 @@ locals {
   managed_image_name = var.managed_image_name != "" ? var.managed_image_name : "packer-${var.image_os}-${var.image_version}"
 }
 
+variable "config_file" {
+  type    = string
+  default = "DevEnvironment.json"
+}
+
 variable "agent_tools_directory" {
   type    = string
   default = "C:\\hostedtoolcache\\windows"
@@ -289,7 +294,7 @@ build {
     elevated_user     = "${var.install_user}"
     environment_vars  = ["IMAGE_FOLDER=${var.image_folder}"]
     scripts           = [
-      "${path.root}/../../../CSEE/Configure-System.ps1 ${var.config_file}",
+      "${path.root}/../../../CSEE/Configure-System.ps1 ../../../envs/${var.config_file}",
     ]
   }
   provisioner "powershell" {
@@ -341,8 +346,6 @@ build {
       "${path.root}/../scripts/build/Install-PowershellAzModules.ps1",
       "${path.root}/../scripts/build/Install-Git.ps1",
       "${path.root}/../scripts/build/Install-GitHub-CLI.ps1",
-      "${path.root}/../scripts/build/Install-Msys2.ps1",
-      "${path.root}/../scripts/build/Install-AWSTools.ps1",
       "${path.root}/../scripts/build/Install-DotnetSDK.ps1",
       "${path.root}/../scripts/build/Install-Mingw64.ps1",
       "${path.root}/../scripts/build/Install-Zstd.ps1",
