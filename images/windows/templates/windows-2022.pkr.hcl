@@ -192,6 +192,10 @@ build {
   sources = ["source.azure-arm.image"]
 
   provisioner "powershell" {
+    inline = ["Dir -Recurse ${path.root}/../../../../ | Get-Childitem"]
+  }
+
+  provisioner "powershell" {
     inline = ["New-Item -Path ${var.image_folder} -ItemType Directory -Force"]
   }
 
